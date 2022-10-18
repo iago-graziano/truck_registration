@@ -15,12 +15,16 @@ namespace truck_registration.Repositories.Concrete
                     new Truck
                     {
                         Id = 1,
-                        Modelo ="FH"
+                        Modelo = "FH",
+                        AnoFabricacao = "2022",
+                        AnoModelo = "2023"
                     },
                     new Truck
                     {
                         Id = 2,
-                        Modelo ="FM"
+                        Modelo ="FM",
+                        AnoFabricacao = "2022",
+                        AnoModelo = "2022"
                     }
                 };
 
