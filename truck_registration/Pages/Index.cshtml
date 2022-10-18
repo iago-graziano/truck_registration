@@ -1,10 +1,15 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Truck Registration";
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Registered Trucks</h1>
+
+    @foreach(var truck in Model.Trucks)
+    {
+        <label>@truck.Id</label> <br />
+        <label>@truck.Modelo</label> <br />
+    }
 </div>
