@@ -7,13 +7,11 @@ namespace truck_registration.Pages
     public class IndexModel : PageModel
     {
         readonly ITruckRepository _truckRepository;
-        private readonly ILogger<IndexModel> _logger;
         public List<Truck> Trucks { get; set; }
         public Truck Truck { get; set; }
 
-        public IndexModel(ILogger<IndexModel> logger, ITruckRepository truckRepository)
+        public IndexModel(ITruckRepository truckRepository)
         {
-            _logger = logger;
             _truckRepository = truckRepository;
             PopulateModel();
         }

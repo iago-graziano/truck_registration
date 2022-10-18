@@ -1,0 +1,50 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Truck Registration";
+}
+
+<div class="text-center">
+    <h2 class="display-4">Registered Trucks</h2>
+
+    <br />
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th class="text-center" width="10%">Id</th>
+                <th class="text-center" width="10%">Modelo</th>
+                <th class="text-center" width="30%">Ano de Fabricação</th>
+                <th class="text-center" width="30%">Ano Modelo</th>
+                <th class="text-center" width="5%">EDITAR</th>
+                <th class="text-center" width="5%">EXCLUIR</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var truck in Model.Trucks)
+            {
+                <tr>
+                    <td class="text-center td-truck">@Html.Raw(truck.Id)</td>
+                    <td class="text-center td-truck">@Html.Raw(truck.Modelo)</td>
+                    <td class="text-center td-truck">@Html.Raw(truck.AnoFabricacao)</td>
+                    <td class="text-center td-truck">@Html.Raw(truck.AnoModelo)</td>
+
+                    <td class="text-center td-truck">
+                        <button class="btn btn-info" type="button" onclick="location.href='@Url.Action("/Edit/"+truck.Id)'">Editar</button>
+                    </td>
+
+                    <td class="text-center td-truck">
+                        <button class="btn btn-close" type="button"></button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<style>
+    .td-truck {
+        vertical-align: middle;
+    }
+</style>
