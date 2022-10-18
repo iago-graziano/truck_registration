@@ -1,31 +1,27 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
+﻿using Microsoft.AspNetCore.Mvc.RazorPages;
+using truck_registration.Daos;
 using truck_registration.Models;
 
 namespace truck_registration.Pages
 {
     public class IndexModel : PageModel
     {
+        private readonly TruckContext _context;
         private readonly ILogger<IndexModel> _logger;
         public List<Truck> Trucks { get; set; }
         public Truck Truck { get; set; }
 
-        public IndexModel(ILogger<IndexModel> logger)
+        public IndexModel(ILogger<IndexModel> logger, TruckContext context)
         {
             _logger = logger;
+            _context = context;
+            PopulateModel();
+        }
 
-            Trucks = new List<Truck>();
-            Trucks.Add(new Truck
-            {
-                Id = 1,
-                Modelo = "tESTE"
-            });
-
-            Trucks.Add(new Truck
-            {
-                Id = 2,
-                Modelo = "Teste 2"
-            });
+        private void PopulateModel()
+        {
+            var truckDao = new TruckDao(_context);
+            Trucks = truckDao.FetchAll();
         }
 
         public void OnGet()
