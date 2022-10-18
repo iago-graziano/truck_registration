@@ -1,10 +1,10 @@
 using truck_registration;
 using Microsoft.EntityFrameworkCore;
+using truck_registration.Repositories.Interfaces;
+using truck_registration.Repositories.Concrete;
 
 var builder = WebApplication.CreateBuilder(args);
-
-builder.Services.AddDbContext<TruckContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddScoped<ITruckRepository, TruckRepository>();
 
 // Add services to the container.
 builder.Services.AddRazorPages();

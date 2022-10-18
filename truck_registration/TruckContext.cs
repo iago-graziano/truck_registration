@@ -5,9 +5,10 @@ namespace truck_registration
 {
     public class TruckContext : DbContext
     {
-        public DbSet<Truck> Truck { get; set; }
-        public TruckContext(DbContextOptions<TruckContext> options) : base(options)
+        public DbSet<Truck> Trucks { get; set; }
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
+            optionsBuilder.UseInMemoryDatabase(databaseName: "AuthorDb");
         }
     }
 }
