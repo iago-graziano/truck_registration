@@ -36,6 +36,15 @@ namespace truck_register.Repositories.Concrete
             }
         }
 
+        public void Delete(Truck Truck)
+        {
+            using (var context = new TruckContext())
+            {
+                context.Trucks.Remove(Truck);
+                context.SaveChanges();
+            }
+        }
+
         public List<Truck> FetchAll()
         {
             using (var context = new TruckContext())
@@ -51,6 +60,26 @@ namespace truck_register.Repositories.Concrete
             using (var context = new TruckContext())
             {
                 return context.Trucks.SingleOrDefault(t => t.Id == Id);
+            }
+        }
+
+        public Truck Insert(Truck Truck)
+        {
+            using (var context = new TruckContext())
+            {
+                Truck = context.Trucks.Add(Truck).Entity;
+                context.SaveChanges();
+                return Truck;
+            }
+        }
+
+        public Truck Update(Truck Truck)
+        {
+            using (var context = new TruckContext())
+            {
+                Truck = context.Trucks.Update(Truck).Entity;
+                context.SaveChanges();
+                return Truck;
             }
         }
     }

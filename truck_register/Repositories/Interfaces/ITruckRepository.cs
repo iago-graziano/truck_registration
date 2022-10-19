@@ -6,5 +6,8 @@ namespace truck_register.Repositories.Interfaces
     {
         public List<Truck> FetchAll();
         public Truck? GetById(long Id);
+        public Truck Insert(Truck Truck);
+        public Truck Update(Truck Truck);
+        public void Delete(Truck Truck);
     }
 }

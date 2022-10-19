@@ -44,6 +44,35 @@ namespace truck_register.Controllers
             return View(viewModel);
         }
 
+        [HttpPost]
+        public IActionResult Edit(TruckViewModel viewModel)
+        {
+            if (viewModel.Truck!.Id == 0)
+            {
+                viewModel.Truck!.Id = _truckRepository.FetchAll().Last().Id + 1;
+
+                _truckRepository.Insert(viewModel.Truck);
+            }
+            else
+            {
+                _truckRepository.Update(viewModel.Truck);
+            }
+
+            PopulateModel(viewModel);
+            return RedirectToAction("Index");
+        }
+
+        public IActionResult Delete(long Id)
+        {
+            var viewModel = new TruckViewModel();
+
+            var truck = _truckRepository.GetById(Id);
+            _truckRepository.Delete(truck);
+
+            PopulateModel(viewModel);
+            return View("Index", viewModel);
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
