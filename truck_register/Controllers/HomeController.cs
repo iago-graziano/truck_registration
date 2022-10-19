@@ -39,7 +39,7 @@ namespace truck_register.Controllers
         {
             var viewModel = new TruckViewModel();
 
-            if(Id == 0)
+            if (Id == 0)
             {
                 viewModel.Truck = new Truck();
             }
@@ -55,19 +55,51 @@ namespace truck_register.Controllers
         [HttpPost]
         public IActionResult Edit(TruckViewModel viewModel)
         {
-            if (viewModel.Truck!.Id == 0)
+            var isModelValid = IsTruckModelValid(viewModel.Truck);
+            if (isModelValid.Item1)
             {
-                viewModel.Truck!.Id = _truckRepository.FetchAll().Last().Id + 1;
+                if (viewModel.Truck!.Id == 0)
+                {
+                    viewModel.Truck!.Id = _truckRepository.FetchAll().Last().Id + 1;
 
-                _truckRepository.Insert(viewModel.Truck);
+                    _truckRepository.Insert(viewModel.Truck);
+                }
+                else
+                {
+                    _truckRepository.Update(viewModel.Truck);
+                }
+
+                PopulateModel(viewModel);
+                return RedirectToAction("Index");
             }
             else
             {
-                _truckRepository.Update(viewModel.Truck);
+                PopulateModel(viewModel);
+                viewModel.Errors = isModelValid.Item2;
+                return View("Edit", viewModel);
+            }
+        }
+
+        private Tuple<bool, string> IsTruckModelValid(Truck truck)
+        {
+            var currentYear = DateTime.Now.Year;
+            bool hasError = false;
+            var errorMessages = "";
+
+            if (Convert.ToInt32(truck.AnoFabricacao) != currentYear)
+            {
+                hasError = true;
+                errorMessages += "O ano de fabricação deve ser o atual;\n";
             }
 
-            PopulateModel(viewModel);
-            return RedirectToAction("Index");
+            var anoModelo = Convert.ToInt32(truck.AnoModelo);
+            if (anoModelo != currentYear && anoModelo != currentYear + 1)
+            {
+                hasError = true;
+                errorMessages += "O ano modelo deve ser o atual ou o ano subsequente;\n";
+            }
+
+            return new Tuple<bool, string>(!hasError, errorMessages);
         }
 
         public IActionResult Delete(long Id)

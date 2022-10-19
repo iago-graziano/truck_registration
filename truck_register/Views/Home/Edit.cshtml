@@ -6,7 +6,7 @@
 
 <form method="post" action="Edit">
 
-    @if(Model.Truck!.Id == 0)
+    @if (Model.Truck!.Id == 0)
     {
         <h3>Caminhão - Inserir</h3>
     }
@@ -20,8 +20,6 @@
     <input type="hidden" asp-for="Truck!.Id">
     <div class="mb-3">
         <label for="" class="form-label">Modelo</label>
-        @*<input type="text" class="form-control" asp-for="Truck!.Modelo">*@
-
         <select asp-for="Truck!.Modelo" class="form-control" asp-items="Model.TruckModels"></select>
     </div>
 
@@ -35,5 +33,11 @@
         <input type="text" class="form-control" asp-for="Truck!.AnoModelo">
     </div>
 
+    @if (Model.Errors != null)
+    {
+        <label class="text-danger">@Model.Errors</label>
+        <br />
+        <br />
+    }
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>

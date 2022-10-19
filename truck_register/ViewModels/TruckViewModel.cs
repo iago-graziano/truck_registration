@@ -8,5 +8,6 @@ namespace truck_register.ViewModels
         public List<Truck> Trucks { get; set; }
         public Truck? Truck { get; set; }
         public List<SelectListItem>? TruckModels { get; set; }
+        public string Errors { get; set; }
     }
 }
