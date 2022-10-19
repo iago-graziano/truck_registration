@@ -1,14 +1,17 @@
 ﻿@model TruckViewModel
+@{
+    ViewData["Title"] = "Cadastro - Caminhões";
+}
 
 <form method="post" action="Edit">
 
     @if(Model.Truck!.Id == 0)
     {
-        <h2>Caminhão - Inserir</h2>
+        <h3>Caminhão - Inserir</h3>
     }
     else
     {
-        <h2>Caminhão - Atualizar</h2>
+        <h3>Caminhão - Atualizar</h3>
     }
 
     <br />
