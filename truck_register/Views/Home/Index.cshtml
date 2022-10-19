@@ -1,10 +1,10 @@
 ﻿@model TruckViewModel
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Listagem - Caminhões";
 }
 
 <div class="text-center">
-    <h2 class="display-4">Registered Trucks</h2>
+    <h2 class="display-4">Caminhões - Listagem</h2>
 
     <br />
 
@@ -29,9 +29,7 @@
                     <td class="text-center td-truck">@Html.Raw(truck.AnoFabricacao)</td>
                     <td class="text-center td-truck">@Html.Raw(truck.AnoModelo)</td>
 
-                    <td class="text-center td-truck">
-                        <button class="btn btn-info" type="button" onclick="location.href='@Url.Action("/Edit/"+truck.Id)'">Editar</button>
-                    </td>
+                    <td><a href="Home/Edit/@truck.Id">Editar</a></td>
 
                     <td class="text-center td-truck">
                         <button class="btn btn-close" type="button"></button>
@@ -40,6 +38,8 @@
             }
         </tbody>
     </table>
+
+    <a class="btn btn-primary" href="Home/Edit/0">Cadastrar novo</a>
 </div>
 
 <style>

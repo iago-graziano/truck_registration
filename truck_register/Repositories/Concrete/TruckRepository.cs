@@ -10,6 +10,9 @@ namespace truck_register.Repositories.Concrete
         {
             using (var context = new TruckContext())
             {
+                if (context.Trucks.Any())
+                    return;
+
                 var trucks = new List<Truck>
                 {
                     new Truck

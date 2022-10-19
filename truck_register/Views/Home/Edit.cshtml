@@ -1,0 +1,33 @@
+﻿@model TruckViewModel
+
+<form method="post" action="Edit">
+
+    @if(Model.Truck!.Id == 0)
+    {
+        <h2>Caminhão - Inserir</h2>
+    }
+    else
+    {
+        <h2>Caminhão - Atualizar</h2>
+    }
+
+    <br />
+
+    <input type="hidden" asp-for="Truck!.Id">
+    <div class="mb-3">
+        <label for="" class="form-label">Modelo</label>
+        <input type="text" class="form-control" asp-for="Truck!.Modelo">
+    </div>
+
+    <div class="mb-3">
+        <label for="" class="form-label">Ano de Fabricacao</label>
+        <input type="text" class="form-control" asp-for="Truck!.AnoFabricacao">
+    </div>
+
+    <div class="mb-3">
+        <label for="" class="form-label">Ano Modelo</label>
+        <input type="text" class="form-control" asp-for="Truck!.AnoModelo">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

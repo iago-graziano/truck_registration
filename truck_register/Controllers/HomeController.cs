@@ -19,10 +19,28 @@ namespace truck_register.Controllers
             viewModel.Trucks = _truckRepository.FetchAll();
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
             var viewModel = new TruckViewModel();
             PopulateModel(viewModel);
+            return View(viewModel);
+        }
+
+        [HttpGet]
+        public IActionResult Edit(long Id)
+        {
+            var viewModel = new TruckViewModel();
+
+            if(Id == 0)
+            {
+                viewModel.Truck = new Truck();
+            }
+            else
+            {
+                viewModel.Truck = _truckRepository.GetById(Id);
+            }
+
             return View(viewModel);
         }
 
