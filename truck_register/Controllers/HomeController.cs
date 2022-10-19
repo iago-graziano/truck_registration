@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Diagnostics;
 using truck_register.Models;
 using truck_register.Repositories.Interfaces;
+using truck_register.ViewModels;
 
 namespace truck_register.Controllers
 {
@@ -17,6 +19,11 @@ namespace truck_register.Controllers
         private void PopulateModel(TruckViewModel viewModel)
         {
             viewModel.Trucks = _truckRepository.FetchAll();
+            viewModel.TruckModels = new List<SelectListItem>()
+            {
+                new SelectListItem() {Text="FH", Value="FH"},
+                new SelectListItem() {Text="FM", Value="FM"},
+            };
         }
 
         [HttpGet]
@@ -41,6 +48,7 @@ namespace truck_register.Controllers
                 viewModel.Truck = _truckRepository.GetById(Id);
             }
 
+            PopulateModel(viewModel);
             return View(viewModel);
         }
 

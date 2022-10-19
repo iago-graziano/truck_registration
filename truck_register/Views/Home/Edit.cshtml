@@ -1,4 +1,5 @@
-﻿@model TruckViewModel
+﻿@using truck_register.ViewModels
+@model TruckViewModel
 @{
     ViewData["Title"] = "Cadastro - Caminhões";
 }
@@ -19,7 +20,9 @@
     <input type="hidden" asp-for="Truck!.Id">
     <div class="mb-3">
         <label for="" class="form-label">Modelo</label>
-        <input type="text" class="form-control" asp-for="Truck!.Modelo">
+        @*<input type="text" class="form-control" asp-for="Truck!.Modelo">*@
+
+        <select asp-for="Truck!.Modelo" class="form-control" asp-items="Model.TruckModels"></select>
     </div>
 
     <div class="mb-3">
