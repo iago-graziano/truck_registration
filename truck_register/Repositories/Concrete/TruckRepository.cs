@@ -28,6 +28,13 @@ namespace truck_register.Repositories.Concrete
                         Modelo ="FM",
                         AnoFabricacao = "2022",
                         AnoModelo = "2022"
+                    },
+                    new Truck
+                    {
+                        Id = 3,
+                        Modelo ="FH",
+                        AnoFabricacao = "2022",
+                        AnoModelo = "2022"
                     }
                 };
 

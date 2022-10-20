@@ -110,7 +110,7 @@ namespace truck_register.Controllers
             _truckRepository.Delete(truck);
 
             PopulateModel(viewModel);
-            return View("Index", viewModel);
+            return RedirectToAction("Index");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
